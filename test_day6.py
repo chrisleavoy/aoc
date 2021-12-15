@@ -58,4 +58,3 @@ def test_sol2():
 
     state = read('day6-input.txt')
     assert sol2(state, days=256) == 1639854996917
- 
