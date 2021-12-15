@@ -52,7 +52,7 @@ def find_path(graph, end) -> int:
                 new_cost = shortest[curr_pos] + risk_of_neighbor
                 if new_cost < old_cost:
                     pq.put((new_cost, neighbor))
-                    shortest[neighbor] = (new_cost, curr_pos)
+                    shortest[neighbor] = new_cost
 
     return shortest[end]
 
