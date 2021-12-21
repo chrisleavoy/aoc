@@ -1,4 +1,8 @@
+from pathlib import Path
+
+
 def read(filename: str):
+    filename = Path(__file__).parent / filename
     rules = {}
     with open(filename, encoding='utf-8') as f:
         template = f.readline().strip()

@@ -1,3 +1,4 @@
+from pathlib import Path
 import re
 
 
@@ -9,6 +10,7 @@ class Input():
 
     @classmethod
     def read(cls, filename: str):
+        filename = Path(__file__).parent / filename
         with open(filename, encoding='utf-8') as f:
             nums = [int(x) for x in f.readline().strip().split(',')]
             f.readline()

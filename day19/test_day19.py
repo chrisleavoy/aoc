@@ -1,4 +1,5 @@
 from __future__ import annotations
+from pathlib import Path
 from typing import Type, Set, List, Mapping, Tuple
 from itertools import permutations, product
 
@@ -123,7 +124,8 @@ def locate_scanners(scans) -> List[Scan]:
     return located.values()
 
 
-def read(filename: str) -> List[Scan]:
+def read(filename: str):
+    filename = Path(__file__).parent / filename
     scans: List[Scan] = []
     with open(filename, encoding='utf-8') as f:
         for line in f.readlines():

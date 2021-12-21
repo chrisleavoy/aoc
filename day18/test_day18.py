@@ -1,9 +1,10 @@
-
 from itertools import permutations
 from typing import Type
+from pathlib import Path
 
 
-def read(filename):
+def read(filename: str):
+    filename = Path(__file__).parent / filename
     numbers = []
     with open(filename, encoding='utf-8') as f:
         for line in f.readlines():

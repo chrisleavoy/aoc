@@ -1,4 +1,8 @@
+from pathlib import Path
+
+
 def read(filename: str):
+    filename = Path(__file__).parent / filename
     data = []
     with open(filename, encoding='utf-8') as f:
         for line in f.readlines():

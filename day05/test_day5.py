@@ -1,3 +1,4 @@
+from pathlib import Path
 import re
 
 
@@ -17,6 +18,7 @@ class Line:
 
 class Vents:
     def read(filename: str):
+        filename = Path(__file__).parent / filename
         s = Vents()
         with open(filename, encoding='utf-8') as f:
             content = f.read()

@@ -1,9 +1,12 @@
+from pathlib import Path
+
 PADDING = 2
 COLPAD = '00'
 
 
 class Puzzle:
     def __init__(self, filename: str):
+        filename = Path(__file__).parent / filename
         self.filename = filename
         t = str.maketrans('.#', '01')
 

@@ -1,4 +1,8 @@
+from pathlib import Path
+
+
 def read(filename: str):
+    filename = Path(__file__).parent / filename
     data = []
     maxX = -1
     maxY = -1
@@ -26,7 +30,7 @@ def read(filename: str):
     return (grid, folds)
 
 
-def sol1(data, break_early = True):
+def sol1(data, break_early=True):
     grid, folds = data
     for f in folds:
         axis, num = f.split('=')
@@ -96,4 +100,3 @@ def test_sol1():
 
 def test_sol2():
     assert sol2(read('day13-input.txt')) == 0
-

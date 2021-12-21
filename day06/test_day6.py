@@ -1,3 +1,6 @@
+from pathlib import Path
+
+
 def sol1(state, days):
     for _ in range(days):
         births = 0
@@ -32,6 +35,7 @@ def sol2(state, days):
 
 
 def read(filename: str):
+    filename = Path(__file__).parent / filename
     with open(filename, encoding='utf-8') as f:
         return [int(x) for x in f.read().strip().split(',')]
 

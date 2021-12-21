@@ -1,7 +1,9 @@
 from queue import PriorityQueue
+from pathlib import Path
 
 
 def read(filename: str):
+    filename = Path(__file__).parent / filename
     grid = []
     with open(filename, encoding='utf-8') as f:
         for line in f.readlines():
