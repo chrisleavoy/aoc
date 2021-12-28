@@ -36,6 +36,9 @@ class State:
         self.last = None
         self.prev = None
 
+    def __hash__(self) -> int:
+        return hash((self.hall, f'{self.rooms}'))
+
     def __repr__(self) -> str:
         last = self.last if self.last is not None else 'none'
         return f"State('{self.hall}', {self.rooms}, {self.energy:6d}, '{last:20s}')"
@@ -81,12 +84,12 @@ class State:
 
 
 def left_of(r):
-    a = [0, 1, 3, 5, 7, 9, 10]
+    a = (0, 1, 3, 5, 7, 9, 10)
     return reversed(a[:r+2])
 
 
 def right_of(r):
-    a = [0, 1, 3, 5, 7, 9, 10]
+    a = (0, 1, 3, 5, 7, 9, 10)
     return iter(a[r+2:])
 
 
@@ -98,7 +101,7 @@ def test_iters():
 
 
 def path_free(r1, r2, hall) -> int:
-    r1, r2 = [2, 4, 6, 8][min(r1, r2)], [2, 4, 6, 8][max(r1, r2)]
+    r1, r2 = (2, 4, 6, 8)[min(r1, r2)], (2, 4, 6, 8)[max(r1, r2)]
     for h in range(r1+1, r2, 2):
         if hall[h] != '.':
             return 0
@@ -127,7 +130,7 @@ def next_state(state: Type[State]) -> List[State]:
     start = None
     while True:
         # type 1 of 3 hall -> room (guaranteed shortest)
-        for h in [0, 1, 3, 5, 7, 9, 10]:
+        for h in (0, 1, 3, 5, 7, 9, 10):
             if state.hall[h] != '.':
                 state = move_hall_to_room(state, h)
 
@@ -152,7 +155,7 @@ def move_room_to_hall(state: Type[State]) -> List[State]:
     hall = state.hall
     moves = []
     for r in range(4):
-        if all(layer[r] in ['.', GOAL[r]] for layer in state.rooms):
+        if all(layer[r] in ('.', GOAL[r]) for layer in state.rooms):
             continue
         # 8 sub-types (top/mid1/mid2/bot and left/right)
         for depth, layer in enumerate(state.rooms):
@@ -215,8 +218,7 @@ def move_hall_to_room(state: Type[State], h) -> Type[State]:
 
 
 def looper(start, least=float('inf')):
-    states = [start]
-    best = None
+    states, best, seen = [start], None, {}
     print()
     while len(states) > 0 and len(states) < 1_000_000:
         state = states.pop()
@@ -224,7 +226,21 @@ def looper(start, least=float('inf')):
         if state.energy >= least:
             continue
 
-        new_states = next_state(state)
+        key = state.__hash__()
+        prev, new_states = seen.get(key, (None, None))
+        if prev is not None:
+            delta = state.energy - prev.energy
+            if delta >= 0:
+                # skip states we've seen a faster path to
+                continue
+            # fix the cost of moves in this new shorter path
+            for new_state in new_states:
+                new_state.energy += delta
+                # new_state.prev = state
+        else:
+            new_states = next_state(state)
+
+        seen[key] = (state, new_states)
 
         if len(new_states) == 1:
             if new_states[0].energy < least and new_states[0].solved():
