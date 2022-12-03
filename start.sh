@@ -16,14 +16,17 @@ touch "$day-input.txt"
 cat > "test_$day.py" <<EOF
 from pathlib import Path
 
+
 def read(filename: str) -> str:
     filename = Path(__file__).parent / filename
     with open(filename, encoding='utf-8') as f:
         return f.read()
 
+
 def test_sol1():
     s = read('$day-input.txt')
     assert s
+
 
 # def test_sol2():
 EOF

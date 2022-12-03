@@ -11,14 +11,14 @@ SOLVER = {
 }
 
 
-def read(filename: str) -> str:
+def read(filename: str) -> list[str]:
     filename = Path(__file__).parent / filename
     with open(filename, encoding='utf-8') as f:
         return f.read().splitlines()
 
 
 def outcome(p1, p2):
-    ''''returns 1 when player 2 (us) wins, 0 on draw and -1 on a loss'''
+    """returns 1 when player 2 (us) wins, 0 on draw and -1 on a loss"""
     if p2 == ROCK2 and p1 == SCIS1 or p2 == PAPE2 and p1 == ROCK1 or p2 == SCIS2 and p1 == PAPE1:
         return score(1, p2,)
     if p2 == ROCK2 and p1 == ROCK1 or p2 == PAPE2 and p1 == PAPE1 or p2 == SCIS2 and p1 == SCIS1:
