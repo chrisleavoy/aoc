@@ -1,5 +1,4 @@
 from pathlib import Path
-from typing import Tuple, List, Dict
 
 
 def read(filename: str) -> list[str]:
@@ -10,9 +9,9 @@ def read(filename: str) -> list[str]:
 
 def sol(lines, segments=2) -> int:
     # x/y coordinate positions of rope segments:
-    rope: List[Tuple[int, int]] = [(0, 0) for _ in range(segments)]
+    rope: list[tuple[int, int]] = [(0, 0) for _ in range(segments)]
     # x/y coordinate positions of where the tail visits:
-    visited: Dict[Tuple[int, int], bool] = {(0, 0): True}
+    visited: dict[tuple[int, int], bool] = {(0, 0): True}
 
     for line in lines:
         d, v = line.split(' ')

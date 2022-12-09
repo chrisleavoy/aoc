@@ -1,14 +1,13 @@
 from pathlib import Path
-from typing import List
 
 
-def read(filename: str) -> List[List[int]]:
+def read(filename: str) -> list[list[int]]:
     filename = Path(__file__).parent / filename
     with open(filename, encoding='utf-8') as f:
         return [list(map(int, line)) for line in f.read().splitlines(keepends=False)]
 
 
-def visible(forest: List[List[int]]) -> int:
+def visible(forest: list[list[int]]) -> int:
     n, m = len(forest), len(forest[0])
     total = 0
     total += len(forest) * 2  # top and bottom always visible
@@ -52,7 +51,7 @@ def visible(forest: List[List[int]]) -> int:
     return total
 
 
-def scenic_score(forest: List[List[int]]) -> int:
+def scenic_score(forest: list[list[int]]) -> int:
     size, max_score = len(forest), 0
     for i in range(size):
         for j in range(size):
