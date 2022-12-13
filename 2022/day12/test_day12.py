@@ -99,8 +99,8 @@ def sol1(heightmap: list[list[str]]) -> int:
 
     last = (len(heightmap)-1, len(heightmap[0])-1)
 
-    graph[start] = chr(ord('a'))
-    graph[end] = chr(ord('z')+1)
+    graph[start] = 'a'
+    graph[end] = 'z'
 
     shortest_path = find_path(graph, start, end, last)
 
@@ -121,8 +121,8 @@ def sol2(heightmap: list[list[str]]) -> int:
 
     last = (len(heightmap)-1, len(heightmap[0])-1)
 
-    graph[start] = chr(ord('a'))
-    graph[end] = chr(ord('z')+1)
+    graph[start] = 'a'
+    graph[end] = 'z'
 
     shortest_path = min([
         find_path(graph, start, end, last) for start in starts
