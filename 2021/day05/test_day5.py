@@ -18,9 +18,9 @@ class Line:
 
 class Vents:
     def read(filename: str):
-        filename = Path(__file__).parent / filename
+        path = Path(__file__).parent.joinpath(filename)
         s = Vents()
-        with open(filename, encoding='utf-8') as f:
+        with open(path, encoding='utf-8') as f:
             content = f.read()
         s.data = []
         for line in content.splitlines():

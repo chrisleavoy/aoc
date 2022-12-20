@@ -9,13 +9,13 @@ def volume(x1, x2, y1, y2, z1, z2):
 
 class Puzzle:
     def __init__(self, filename: str):
-        filename = Path(__file__).parent / filename
+        path = Path(__file__).parent.joinpath(filename)
         # reboot steps: [toggle, x1, x2, y1, y2, z1, z2]
         self.cuboids = []
         self.grid = []
         self.cubes = []
 
-        with open(filename, encoding='utf-8') as f:
+        with open(path, encoding='utf-8') as f:
             for line in f.read().splitlines():
                 tokens = re.split(' x=|,[yz]=|[.]{2}', line)
                 tokens = [int(t if t[0] != 'o' else t[1] == 'n')

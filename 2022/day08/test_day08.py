@@ -2,8 +2,8 @@ from pathlib import Path
 
 
 def read(filename: str) -> list[list[int]]:
-    filename = Path(__file__).parent / filename
-    with open(filename, encoding='utf-8') as f:
+    path = Path(__file__).parent.joinpath(filename)
+    with open(path, encoding='utf-8') as f:
         return [list(map(int, line)) for line in f.read().splitlines(keepends=False)]
 
 

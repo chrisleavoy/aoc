@@ -2,8 +2,8 @@ from pathlib import Path
 
 
 def read(filename: str):
-    filename = Path(__file__).parent / filename
-    with open(filename, encoding='utf-8') as f:
+    path = Path(__file__).parent.joinpath(filename)
+    with open(path, encoding='utf-8') as f:
         calories, elves = 0, []
         for line in f.readlines():
             l = line.strip()

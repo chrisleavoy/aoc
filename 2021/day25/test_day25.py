@@ -14,7 +14,7 @@ class Puzzle:
             filename = Path(__file__).parent/s
             self.grid = []
             self.steps = 0
-            with open(filename, encoding='utf-8') as f:
+            with open(path, encoding='utf-8') as f:
                 for line in f.read().splitlines():
                     self.grid.append(list(line))
 

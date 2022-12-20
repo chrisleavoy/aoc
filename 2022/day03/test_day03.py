@@ -4,8 +4,8 @@ from pathlib import Path
 
 
 def read(filename: str) -> list[str]:
-    filename = Path(__file__).parent / filename
-    with open(filename, encoding='utf-8') as f:
+    path = Path(__file__).parent.joinpath(filename)
+    with open(path, encoding='utf-8') as f:
         return f.read().splitlines()
 
 
@@ -48,7 +48,8 @@ class TestDay03(unittest.TestCase):
         total = sum([common_item_priority(s) for s in lines])
         self.assertEqual(total, 157)
 
-        total2 = sum([group_common_item_priority(group) for group in grouper(3, lines)])
+        total2 = sum([group_common_item_priority(group)
+                     for group in grouper(3, lines)])
         self.assertEqual(total2, 70)
 
     def test_sol1(self):
@@ -57,7 +58,8 @@ class TestDay03(unittest.TestCase):
 
     def test_sol2(self):
         lines = read('day03-input.txt')
-        total = sum([group_common_item_priority(group) for group in grouper(3, lines)])
+        total = sum([group_common_item_priority(group)
+                    for group in grouper(3, lines)])
         self.assertEqual(total, 2790)
 
 

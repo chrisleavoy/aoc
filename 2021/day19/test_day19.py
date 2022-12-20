@@ -125,9 +125,9 @@ def locate_scanners(scans) -> List[Scan]:
 
 
 def read(filename: str):
-    filename = Path(__file__).parent / filename
+    path = Path(__file__).parent.joinpath(filename)
     scans: List[Scan] = []
-    with open(filename, encoding='utf-8') as f:
+    with open(path, encoding='utf-8') as f:
         for line in f.readlines():
             if line.startswith('---'):
                 scan = Scan()

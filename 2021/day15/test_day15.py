@@ -3,9 +3,9 @@ from pathlib import Path
 
 
 def read(filename: str):
-    filename = Path(__file__).parent / filename
+    path = Path(__file__).parent.joinpath(filename)
     grid = []
-    with open(filename, encoding='utf-8') as f:
+    with open(path, encoding='utf-8') as f:
         for line in f.readlines():
             row = [int(x) for x in line.strip()]
             grid.append(row)

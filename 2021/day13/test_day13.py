@@ -2,11 +2,11 @@ from pathlib import Path
 
 
 def read(filename: str):
-    filename = Path(__file__).parent / filename
+    path = Path(__file__).parent.joinpath(filename)
     data = []
     maxX = -1
     maxY = -1
-    with open(filename, encoding='utf-8') as f:
+    with open(path, encoding='utf-8') as f:
         folds = None
         for line in f.readlines():
             line = line.strip()

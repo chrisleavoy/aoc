@@ -2,13 +2,13 @@ from pathlib import Path
 
 
 def measurements(filename: str):
-    filename = Path(__file__).parent / filename
+    path = Path(__file__).parent.joinpath(filename)
     with open(filename, encoding='utf8') as f:
         return [line.strip() for line in f]
 
 
 def measurements2(filename: str):
-    filename = Path(__file__).parent / filename
+    path = Path(__file__).parent.joinpath(filename)
     with open(filename, encoding='utf8') as f:
         return [int(line.strip()) for line in f]
 

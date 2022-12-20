@@ -6,7 +6,7 @@ COLPAD = '00'
 
 class Puzzle:
     def __init__(self, filename: str):
-        filename = Path(__file__).parent / filename
+        path = Path(__file__).parent.joinpath(filename)
         self.filename = filename
         t = str.maketrans('.#', '01')
 

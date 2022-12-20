@@ -14,8 +14,8 @@ class Monkey:
 
 def read(filename: str) -> list[Monkey]:
     monkeys = []
-    filename = Path(__file__).parent / filename
-    with open(filename, encoding='utf-8') as f:
+    path = Path(__file__).parent.joinpath(filename)
+    with open(path, encoding='utf-8') as f:
         lines = f.read().splitlines(keepends=False)
         for i in range(0, len(lines), 7):
             items = list(map(int, lines[i + 1][18:].split(', ')))

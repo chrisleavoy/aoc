@@ -9,8 +9,8 @@ def parse(line: str) -> list[Point]:
 
 
 def read(filename: str) -> Input:
-    filename = Path(__file__).parent / filename
-    with open(filename, encoding='utf-8') as f:
+    path = Path(__file__).parent.joinpath(filename)
+    with open(path, encoding='utf-8') as f:
         return [parse(line) for line in f.read().splitlines()]
 
 

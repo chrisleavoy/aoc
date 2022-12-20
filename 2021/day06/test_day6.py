@@ -35,8 +35,8 @@ def sol2(state, days):
 
 
 def read(filename: str):
-    filename = Path(__file__).parent / filename
-    with open(filename, encoding='utf-8') as f:
+    path = Path(__file__).parent.joinpath(filename)
+    with open(path, encoding='utf-8') as f:
         return [int(x) for x in f.read().strip().split(',')]
 
 

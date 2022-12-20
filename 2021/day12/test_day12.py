@@ -2,9 +2,9 @@ from pathlib import Path
 
 
 def read(filename: str):
-    filename = Path(__file__).parent / filename
+    path = Path(__file__).parent.joinpath(filename)
     caves = Caves()
-    with open(filename, encoding='utf-8') as f:
+    with open(path, encoding='utf-8') as f:
         for line in f.readlines():
             x, y = line.strip().split('-')
             caves.add(x, y)
